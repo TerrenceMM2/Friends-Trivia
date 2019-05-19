@@ -76,11 +76,16 @@ span {
 p {
     font-size: 3rem;
     margin: 3rem auto;
+    width: 75%;
 }
 
 h2 {
     font-size: 5rem;
+    margin-top: 5rem;
 }
+ #timer {
+     font-size: 3rem;
+ }
 
 #correct {
     color: #28a745;
@@ -90,14 +95,23 @@ h2 {
     color: #dc3545;
 }
 
-.gif {
-    margin-top: 5rem;
+.gif-container {
+    margin-top: 2rem;
 }
 
-#questions {
+#gif {
+    min-height: 400px;
+    max-height: 500px;
+}
+
+#question-container {
     display: none;
 }
 
-#result {
+#result-container {
+    display: none;
+}
+
+#end-screen {
     display: none;
 }

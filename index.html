@@ -24,25 +24,42 @@
             <button type="button" class="start btn btn-secondary btn-lg btn-block">Start Game!</button>
         </div>
 
-        <div id="questions" class="container h-75">
+        <div id="question-container" class="container h-75">
             <div class="row">
-                <p class="question">What is the question?</p>
+                <p id="question">What is the question?</p>
             </div>
 
             <div class="row">
-                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 1</button>
-                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 2</button>
-                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 3</button>
-                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 4</button>
+                <button type="button" id="answer1" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 1</button>
+                <button type="button" id="answer2" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 2</button>
+                <button type="button" id="answer3" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 3</button>
+                <button type="button" id="answer4" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 4</button>
+            </div>
+
+            <div>
+                <p>Time remaining: <span id="timer">&#8200;&#8200;&#8200;&#8200;</span></p>
             </div>
         </div>
 
-        <div id="result" class="container h-75">
+        <div id="result-container" class="container h-75">
             <div class="row">
-                <h2 class="gif correct col-12">Correct!</h2>
+                <h2 id="result-text" class="gif col-12"></h2>
             </div>
-            <div class="row gif">
-                <img class="mx-auto" src="assets/images/correct14.gif" alt="placement text">
+            <div class="row gif-container">
+                <img id="gif" class="mx-auto" alt="placement text">
+            </div>
+        </div>
+
+        <div id="end-screen" class="container h-75">
+            <div class="row">
+                <p id="correct">You win/loss</p>
+            </div>
+            <div class="row">
+                <p>5 correct</p>
+                <p>5 incorrect</p>
+            </div>
+            <div id="restart">
+                <button type="button" class="start btn btn-secondary btn-lg">Play again?</button>
             </div>
         </div>
 
