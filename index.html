@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <title>Coursework 5: Trivia Game</title>
 </head>
+
 <body>
-    
-    <h1>Friends Trivia</h1>
+    <div class="main-container container">
+        <h1>
+            F<span class="red">&centerdot;</span>R<span class="blue">&centerdot;</span>I<span
+                class="yellow">&centerdot;</span>E<span class="red">&centerdot;</span>N<span
+                class="yellow">&centerdot;</span>D<span class="blue">&centerdot;</span>S
+            TRIVIA</h1>
+        <div id="start">
+            <button type="button" class="start btn btn-secondary btn-lg btn-block">Start Game!</button>
+        </div>
+
+        <div id="questions" class="container h-75">
+            <div class="row">
+                <p class="question">What is the question?</p>
+            </div>
+
+            <div class="row">
+                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 1</button>
+                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 2</button>
+                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 3</button>
+                <button type="button" class="answer col-12 btn btn-secondary btn-lg btn-block">Answer 4</button>
+            </div>
+        </div>
+
+        <div id="result" class="container h-75">
+            <div class="row">
+                <h2 class="gif correct col-12">Correct!</h2>
+            </div>
+            <div class="row gif">
+                <img class="mx-auto" src="assets/images/correct14.gif" alt="placement text">
+            </div>
+        </div>
+
+    </div>
 
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

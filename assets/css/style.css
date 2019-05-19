@@ -1,8 +1,103 @@
 @font-face {
     font-family: "friends";
     src: url("../fonts/GABRWFFR.TTF") format('truetype');
-  }
+}
 
-  h1 {
-      font-family: "friends", serif;
-  }
+body {
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.main-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    height: 90vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+h1 {
+    font-family: "friends", serif;
+    background-color: transparent;
+    margin: 1rem 0;
+    font-size: 5rem;
+    letter-spacing: 7px;
+}
+
+span {
+    font-size: 6rem;
+    letter-spacing: 0;
+}
+
+.red {
+    color: #EA181E;
+}
+
+.blue {
+    color: #00B3E8;
+}
+
+.yellow {
+    color: #FABD0F;
+}
+
+#start {
+    height: 75%;
+    display: flex;
+    align-items: center;
+}
+
+.start {
+    font-size: 3rem;
+}
+
+.answer {
+    font-size: 2rem;
+    background-color: #9581D3;
+    border-color: #7262A1
+}
+
+.answer:hover {
+    background-color: #7262A1;
+    border-color: #7262A1
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+p {
+    font-size: 3rem;
+    margin: 3rem auto;
+}
+
+h2 {
+    font-size: 5rem;
+}
+
+#correct {
+    color: #28a745;
+}
+
+#incorrect {
+    color: #dc3545;
+}
+
+.gif {
+    margin-top: 5rem;
+}
+
+#questions {
+    display: none;
+}
+
+#result {
+    display: none;
+}
