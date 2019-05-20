@@ -84,11 +84,13 @@ $(document).ready(function () {
         $("#question-container").fadeIn().show();
     });
 
+    // Start Game screen fades out; Questions screen fades in
     function startGame() {
         $("#start").fadeOut().hide();
         $("#question-container").fadeIn().show();
     };
 
+    // Initial function for the "Start Game" button
     function showQuestion() {
         startInterval();
         resetResult();
@@ -96,6 +98,8 @@ $(document).ready(function () {
         $("#timer").text(timer);
     };
 
+    // Pulls out a question from the questionArray.
+    // Displays text from the question object pulled and sets the true/false data value to each HTML "#answer" element.
     function randomQuestion() {
         var randomQuestionIndex = Math.floor(Math.random() * questionArray.length); // 1
         // var nextIndex = randomQuestionIndex + 1;
@@ -112,6 +116,8 @@ $(document).ready(function () {
         $("#answer4").attr("data-value", randomQuestion[0][4][1]);
     };
 
+    // Resets the timer's color (if changed) and removes the previous questions data attribute.
+    // Resets timer to 30 seconds and stages a new random question.
     function resetQuestion() {
         $("#timer").css("color", "");
         $("#answer1").removeAttr("data-value");
@@ -123,6 +129,7 @@ $(document).ready(function () {
         randomQuestion();
     };
 
+    // Determine if the answer sectied was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
     function showResult(boolean) {
         if (boolean) {
             correctAnswers++
@@ -155,11 +162,13 @@ $(document).ready(function () {
         $("#result-container").fadeIn().show();
     };
 
+    // Resets the Results screen text and gif to blank
     function resetResult() {
         $(".result-text").attr("id", "");
         $("#gif").attr("src", "");
     };
 
+    // Determines if the max number of questions was asked (10). If not, the next random question is shown.
     function nextQuestion() {
         if (questionsAsked === 2) {
             endGame();
@@ -200,6 +209,7 @@ $(document).ready(function () {
         return timer;
     };
 
+    // Called if the number of questionsAsked === 10. Starts music, stages number totals, fades out Results screen and fades in the End (Totals) screen.
     function endGame() {
         startMusic();
         $("#number-correct").text(correctAnswers);
@@ -209,11 +219,13 @@ $(document).ready(function () {
         $("#end-screen").fadeIn().show();
     };
 
+    // Called when "Start Game" or "Play Again?" is clicked.
     function bamboozled() {
         audio = document.getElementById("start-sound");
         audio.play();
     }
 
+    // Start music bed on the End screen.
     function startMusic() {
         audio = document.getElementById("music-bed");
         audio.currentTime = 0;
@@ -222,23 +234,10 @@ $(document).ready(function () {
         audio.play();
     }
 
+    // Stops music when "Play Again?" is clicked.
     function stopMusic() {
         audio = document.getElementById("music-bed");
         audio.pause();
     }
-
-
-
-    // setInterval to fire "x" number of times.
-    // Source: https://stackoverflow.com/questions/2956966/javascript-telling-setinterval-to-only-fire-x-amount-of-times
-    // function setInterval(callback, delay, repetitions) {
-    //     var x = 0;
-    //     var intervalID = window.setInterval(function () {
-    //         callback();
-    //         if (++x === repetitions) {
-    //             window.clearInterval(intervalID);
-    //         }
-    //     }, delay);
-    // };
 
 });
