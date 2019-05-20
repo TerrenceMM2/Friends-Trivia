@@ -25,6 +25,7 @@ $(document).ready(function () {
 
     var correctGif = ["correct1.gif", "correct2.gif", "correct3.gif", "correct4.gif", "correct5.gif", "correct6.gif", "correct7.gif", "correct8.gif", "correct9.gif", "correct10.gif", "correct11.gif", "correct12.gif", "correct13.gif", "correct14.gif", "correct15.gif"];
     var incorrectGif = ["incorrect1.gif", "incorrect2.gif", "incorrect3.gif", "incorrect4.gif", "incorrect5.gif", "incorrect6.gif", "incorrect7.gif", "incorrect8.gif", "incorrect9.gif", "incorrect10.gif", "incorrect11.gif", "incorrect12.gif", "incorrect13.gif", "incorrect15.gif", "incorrect15.gif"];
+    var unansweredGif = ["unanswered1.gif", "unanswered2.gif", "unanswered3.gif", "unanswered4.gif", "unanswered5.gif"]
     var questionsAsked = 0;
     var correctAnswers = 0;
     var incorrectAnswers = 0;
@@ -33,31 +34,17 @@ $(document).ready(function () {
     var intervalID;
 
     $(".start").on("click", function () {
+        showQuestion();
         startGame();
-        randomQuestion();
     });
 
     $(".answer").on("click", function () {
         clearInterval(intervalID);
-        var answerBoolean = $(this).data("value");
-        if (answerBoolean) {
-            var randomGif = Math.floor(Math.random() * correctGif.length);
-            var gifUrl = "assets/images/" + correctGif[randomGif];
-            $("#result-text").text("Correct!");
-            $("#result-text").attr("id", "correct");
-            $("#gif").attr("src", gifUrl);
-        } else {
-            var randomGif = Math.floor(Math.random() * incorrectGif.length);
-            var gifUrl = "assets/images/" + incorrectGif[randomGif];
-            $("#result-text").text("Wrong!");
-            $("#result-text").attr("id", "incorrect");
-            $("#gif").attr("src", gifUrl);
-        }
-        $("#question-container").fadeOut().hide();
-        $("#result-container").fadeIn().show();
-        resetQuestion();
+        answerBoolean = $(this).data("value");
+        showResult(answerBoolean);
         setTimeout(nextQuestion, 5000);
         clearTimeout();
+        stopInterval(); 
     });
 
     function startGame() {
@@ -65,11 +52,43 @@ $(document).ready(function () {
         $("#question-container").fadeIn().show();
     };
 
+    function showResult(boolean) {
+        console.log(boolean);
+        if (boolean) {
+            var randomGif = Math.floor(Math.random() * correctGif.length);
+            var gifUrl = "assets/images/" + correctGif[randomGif];
+            $(".result-text").text("Correct!");
+            $(".result-text").attr("id", "correct");
+            $("#gif").attr("src", gifUrl);
+        } else if (boolean === false) {
+            var randomGif = Math.floor(Math.random() * incorrectGif.length);
+            var gifUrl = "assets/images/" + incorrectGif[randomGif];
+            $(".result-text").text("Wrong!");
+            $(".result-text").attr("id", "incorrect");
+            $("#gif").attr("src", gifUrl);
+        } else {
+            var randomGif = Math.floor(Math.random() * unansweredGif.length);
+            var gifUrl = "assets/images/" + unansweredGif[randomGif];
+            $(".result-text").text("Out of time!");
+            $("#gif").attr("src", gifUrl);
+        };
+        clearInterval(intervalID);
+        $("#question-container").fadeOut().hide();
+        $("#result-container").fadeIn().show();
+    };
+
+    function showQuestion () {
+        startInterval();
+        resetResult();
+        randomQuestion();
+        $("#timer").text(timer);
+    };
+
     function randomQuestion() {
         var randomQuestionIndex = Math.floor(Math.random() * questionArray.length); // 1
         // var nextIndex = randomQuestionIndex + 1;
         var randomQuestion = questionArray.splice(randomQuestionIndex, 1);
-        intervalID = setInterval(countDown, 1000, 31);
+        // intervalID = setInterval(countDown, 1000, 31);
         $("#question").text(randomQuestion[0].question);
         $("#answer1").text(randomQuestion[0][1][0]);
         $("#answer1").attr("data-value", randomQuestion[0][1][1]);
@@ -82,35 +101,42 @@ $(document).ready(function () {
     };
 
     function resetQuestion() {
+        $("#timer").css("color", "");
         $("#answer1").removeAttr("data-value");
         $("#answer2").removeAttr("data-value");
         $("#answer3").removeAttr("data-value");
         $("#answer4").removeAttr("data-value");
+        timer = 30; 
+        $("#timer").text(timer);
+    };
+
+    function resetResult() {
+        resetQuestion();
+        $(".result-text").attr("id", "");
+        $("#gif").attr("src", "");
     };
 
     function nextQuestion() {
+        startInterval();
         $("#result-container").fadeOut().hide();
         $("#question-container").fadeIn().show();
-    }
-
-    // setInterval to fire "x" number of times.
-    // Source: https://stackoverflow.com/questions/2956966/javascript-telling-setinterval-to-only-fire-x-amount-of-times
-    function setInterval(callback, delay, repetitions) {
-        var x = 0;
-        var intervalID = window.setInterval(function () {
-            callback();
-            if (++x === repetitions) {
-                window.clearInterval(intervalID);
-            }
-        }, delay);
     };
+
+    function startInterval() {
+        clearInterval(intervalID);
+        intervalID = setInterval(countDown, 1000);
+    };
+
+    function stopInterval () {
+        clearInterval(intervalID);
+    }
 
     // Decrements timer variable. Adds styling if less than 10 and less than 5 secions.
     // If the time reaches 0, unanswered value increases by 1.
     function countDown() {
         $("#timer").text(timer);
         if (timer === 0) {
-            unanswered++;
+            showResult();
         } else if (timer < 11 && timer > 6) {
             $("#timer").css("color", "#fd7e14")
             timer--;
@@ -122,5 +148,18 @@ $(document).ready(function () {
         };
         return timer;
     };
+
+
+        // setInterval to fire "x" number of times.
+    // Source: https://stackoverflow.com/questions/2956966/javascript-telling-setinterval-to-only-fire-x-amount-of-times
+    // function setInterval(callback, delay, repetitions) {
+    //     var x = 0;
+    //     var intervalID = window.setInterval(function () {
+    //         callback();
+    //         if (++x === repetitions) {
+    //             window.clearInterval(intervalID);
+    //         }
+    //     }, delay);
+    // };
 
 });
