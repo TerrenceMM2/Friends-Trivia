@@ -70,9 +70,12 @@ $(document).ready(function () {
             var randomGif = Math.floor(Math.random() * unansweredGif.length);
             var gifUrl = "assets/images/" + unansweredGif[randomGif];
             $(".result-text").text("Out of time!");
+            $(".result-text").attr("id", "");
             $("#gif").attr("src", gifUrl);
         };
         clearInterval(intervalID);
+        setTimeout(nextQuestion, 5000);
+        resetQuestion();
         $("#question-container").fadeOut().hide();
         $("#result-container").fadeIn().show();
     };
@@ -108,15 +111,16 @@ $(document).ready(function () {
         $("#answer4").removeAttr("data-value");
         timer = 30; 
         $("#timer").text(timer);
+        randomQuestion();
     };
 
     function resetResult() {
-        resetQuestion();
         $(".result-text").attr("id", "");
         $("#gif").attr("src", "");
     };
 
     function nextQuestion() {
+        clearInterval(intervalID);
         startInterval();
         $("#result-container").fadeOut().hide();
         $("#question-container").fadeIn().show();
