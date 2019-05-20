@@ -30,14 +30,15 @@ $(document).ready(function () {
     var incorrectAnswers = 0;
     var unanswered = 0;
     var timer = 30;
+    var intervalID;
 
     $(".start").on("click", function () {
         startGame();
         randomQuestion();
-        setInterval(countDown, 1000, 31);
     });
 
     $(".answer").on("click", function () {
+        clearInterval(intervalID);
         var answerBoolean = $(this).data("value");
         if (answerBoolean) {
             var randomGif = Math.floor(Math.random() * correctGif.length);
@@ -54,6 +55,9 @@ $(document).ready(function () {
         }
         $("#question-container").fadeOut().hide();
         $("#result-container").fadeIn().show();
+        resetQuestion();
+        setTimeout(nextQuestion, 5000);
+        clearTimeout();
     });
 
     function startGame() {
@@ -65,6 +69,7 @@ $(document).ready(function () {
         var randomQuestionIndex = Math.floor(Math.random() * questionArray.length); // 1
         // var nextIndex = randomQuestionIndex + 1;
         var randomQuestion = questionArray.splice(randomQuestionIndex, 1);
+        intervalID = setInterval(countDown, 1000, 31);
         $("#question").text(randomQuestion[0].question);
         $("#answer1").text(randomQuestion[0][1][0]);
         $("#answer1").attr("data-value", randomQuestion[0][1][1]);
@@ -74,6 +79,13 @@ $(document).ready(function () {
         $("#answer3").attr("data-value", randomQuestion[0][3][1]);
         $("#answer4").text(randomQuestion[0][4][0]);
         $("#answer4").attr("data-value", randomQuestion[0][4][1]);
+    };
+
+    function resetQuestion() {
+        $("#answer1").removeAttr("data-value");
+        $("#answer2").removeAttr("data-value");
+        $("#answer3").removeAttr("data-value");
+        $("#answer4").removeAttr("data-value");
     };
 
     function nextQuestion() {
@@ -98,9 +110,7 @@ $(document).ready(function () {
     function countDown() {
         $("#timer").text(timer);
         if (timer === 0) {
-            clearInterval(timer);
             unanswered++;
-            console.log(unanswered);
         } else if (timer < 11 && timer > 6) {
             $("#timer").css("color", "#fd7e14")
             timer--;
