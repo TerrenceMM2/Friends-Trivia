@@ -36,15 +36,52 @@ $(document).ready(function () {
     $(".start").on("click", function () {
         showQuestion();
         startGame();
+        bamboozled();
     });
 
     $(".answer").on("click", function () {
         clearInterval(intervalID);
         answerBoolean = $(this).data("value");
         showResult(answerBoolean);
-        setTimeout(nextQuestion, 5000);
         clearTimeout();
-        stopInterval(); 
+        setTimeout(nextQuestion, 5000);
+        stopInterval();
+        questionsAsked++;
+        console.log(questionsAsked);
+    });
+
+    $(".restart").on("click", function () {
+        questionArray = [{
+            question: "What is the name of the coffee shop the friends hang out at?",
+            1: ["Central Perk", true],
+            2: ["Starbucks", false],
+            3: ["Central Joe's", false],
+            4: ["Coffee Corner", false]
+        },
+        {
+            question: "Who was Ross' first wife?",
+            1: ["Emily", false],
+            2: ["Rachel", false],
+            3: ["Susan", false],
+            4: ["Carol", true],
+        },
+        {
+            question: "What was the name of Pheobe's hit single?",
+            1: ["Pervert Parade", false],
+            2: ["Smelly Cat", true],
+            3: ["Sticky Shoes", false],
+            4: ["Lather, Rinse, Repeat", false]
+        }
+    ];
+        questionsAsked = 0;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        unanswered = 0;
+        showQuestion();
+        stopMusic();
+        bamboozled();
+        $("#end-screen").fadeOut().hide();
+        $("#question-container").fadeIn().show();
     });
 
     function startGame() {
@@ -52,38 +89,10 @@ $(document).ready(function () {
         $("#question-container").fadeIn().show();
     };
 
-    function showResult(boolean) {
-        console.log(boolean);
-        if (boolean) {
-            var randomGif = Math.floor(Math.random() * correctGif.length);
-            var gifUrl = "assets/images/" + correctGif[randomGif];
-            $(".result-text").text("Correct!");
-            $(".result-text").attr("id", "correct");
-            $("#gif").attr("src", gifUrl);
-        } else if (boolean === false) {
-            var randomGif = Math.floor(Math.random() * incorrectGif.length);
-            var gifUrl = "assets/images/" + incorrectGif[randomGif];
-            $(".result-text").text("Wrong!");
-            $(".result-text").attr("id", "incorrect");
-            $("#gif").attr("src", gifUrl);
-        } else {
-            var randomGif = Math.floor(Math.random() * unansweredGif.length);
-            var gifUrl = "assets/images/" + unansweredGif[randomGif];
-            $(".result-text").text("Out of time!");
-            $(".result-text").attr("id", "");
-            $("#gif").attr("src", gifUrl);
-        };
-        clearInterval(intervalID);
-        setTimeout(nextQuestion, 5000);
-        resetQuestion();
-        $("#question-container").fadeOut().hide();
-        $("#result-container").fadeIn().show();
-    };
-
-    function showQuestion () {
+    function showQuestion() {
         startInterval();
         resetResult();
-        randomQuestion();
+        resetQuestion();
         $("#timer").text(timer);
     };
 
@@ -109,9 +118,41 @@ $(document).ready(function () {
         $("#answer2").removeAttr("data-value");
         $("#answer3").removeAttr("data-value");
         $("#answer4").removeAttr("data-value");
-        timer = 30; 
+        timer = 30;
         $("#timer").text(timer);
         randomQuestion();
+    };
+
+    function showResult(boolean) {
+        if (boolean) {
+            correctAnswers++
+            var randomGif = Math.floor(Math.random() * correctGif.length);
+            var gifUrl = "assets/images/" + correctGif[randomGif];
+            $(".result-text").text("Correct!");
+            $(".result-text").attr("id", "correct");
+            $("#gif").attr("src", gifUrl);
+        } else if (boolean === false) {
+            incorrectAnswers++
+            var randomGif = Math.floor(Math.random() * incorrectGif.length);
+            var gifUrl = "assets/images/" + incorrectGif[randomGif];
+            $(".result-text").text("Wrong!");
+            $(".result-text").attr("id", "incorrect");
+            $("#gif").attr("src", gifUrl);
+        } else {
+            questionsAsked++;
+            console.log(questionsAsked);
+            unanswered++
+            var randomGif = Math.floor(Math.random() * unansweredGif.length);
+            var gifUrl = "assets/images/" + unansweredGif[randomGif];
+            $(".result-text").text("Out of time!");
+            $(".result-text").attr("id", "");
+            $("#gif").attr("src", gifUrl);
+        };
+        resetQuestion();
+        clearInterval(intervalID);
+        setTimeout(nextQuestion, 5000);
+        $("#question-container").fadeOut().hide();
+        $("#result-container").fadeIn().show();
     };
 
     function resetResult() {
@@ -120,10 +161,16 @@ $(document).ready(function () {
     };
 
     function nextQuestion() {
-        clearInterval(intervalID);
-        startInterval();
-        $("#result-container").fadeOut().hide();
-        $("#question-container").fadeIn().show();
+        if (questionsAsked === 2) {
+            endGame();
+            clearInterval(intervalID);
+        } else {
+            clearInterval(intervalID);
+            startInterval();
+            $("#result-container").fadeOut().hide();
+            $("#question-container").fadeIn().show();
+            resetResult();
+        };
     };
 
     function startInterval() {
@@ -131,7 +178,7 @@ $(document).ready(function () {
         intervalID = setInterval(countDown, 1000);
     };
 
-    function stopInterval () {
+    function stopInterval() {
         clearInterval(intervalID);
     }
 
@@ -153,8 +200,36 @@ $(document).ready(function () {
         return timer;
     };
 
+    function endGame() {
+        startMusic();
+        $("#number-correct").text(correctAnswers);
+        $("#number-incorrect").text(incorrectAnswers);
+        $("#number-unanswered").text(unanswered);
+        $("#result-container").fadeOut().hide();
+        $("#end-screen").fadeIn().show();
+    };
 
-        // setInterval to fire "x" number of times.
+    function bamboozled() {
+        audio = document.getElementById("start-sound");
+        audio.play();
+    }
+
+    function startMusic() {
+        audio = document.getElementById("music-bed");
+        audio.currentTime = 0;
+        audio.volume = 0.5;
+        audio.loop = true;
+        audio.play();
+    }
+
+    function stopMusic() {
+        audio = document.getElementById("music-bed");
+        audio.pause();
+    }
+
+
+
+    // setInterval to fire "x" number of times.
     // Source: https://stackoverflow.com/questions/2956966/javascript-telling-setinterval-to-only-fire-x-amount-of-times
     // function setInterval(callback, delay, repetitions) {
     //     var x = 0;

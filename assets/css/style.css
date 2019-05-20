@@ -115,3 +115,12 @@ h2 {
 #end-screen {
     display: none;
 }
+
+.totals {
+    font-size: 3rem;
+}
+
+.restart {
+    font-size: 3rem;
+    margin-top: 3rem;
+}

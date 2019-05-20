@@ -52,19 +52,26 @@
 
         <div id="end-screen" class="container h-75">
             <div class="row">
-                <p id="correct">You win/loss</p>
+                <h2 class="col-12">Totals</h2>
             </div>
             <div class="row">
-                <p>5 correct</p>
-                <p>5 incorrect</p>
+                <p class="totals col-4">Correct:<br><span class="totals" id="number-correct"></span></p>
+                <p class="totals col-4">Incorrect:<br><span class="totals" id="number-incorrect"></span></p>
+                <p class="totals col-4">Unanswered:<br><span class="totals" id="number-unanswered"></span></p>
             </div>
             <div id="restart">
-                <button type="button" class="start btn btn-secondary btn-lg">Play again?</button>
+                <button type="button" class="restart btn btn-secondary btn-lg btn-block">Play again?</button>
             </div>
         </div>
 
     </div>
 
+    <audio id="music-bed">
+        <source src="assets/audio/music_bed.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="start-sound">
+        <source src="assets/audio/bamboozled.mp3" type="audio/mpeg">
+    </audio>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
