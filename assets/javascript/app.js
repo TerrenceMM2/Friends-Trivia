@@ -1,35 +1,16 @@
 $(document).ready(function () {
 
-    var questionArray = [{
-            question: "What is the name of the coffee shop the friends hang out at?",
-            1: ["Central Perk", true],
-            2: ["Starbucks", false],
-            3: ["Central Joe's", false],
-            4: ["Coffee Corner", false]
-        },
-        {
-            question: "Who was Ross' first wife?",
-            1: ["Emily", false],
-            2: ["Rachel", false],
-            3: ["Susan", false],
-            4: ["Carol", true],
-        },
-        {
-            question: "What was the name of Pheobe's hit single?",
-            1: ["Pervert Parade", false],
-            2: ["Smelly Cat", true],
-            3: ["Sticky Shoes", false],
-            4: ["Lather, Rinse, Repeat", false]
-        }
-    ];
+    loadQuestions();
 
     var correctGif = ["correct1.gif", "correct2.gif", "correct3.gif", "correct4.gif", "correct5.gif", "correct6.gif", "correct7.gif", "correct8.gif", "correct9.gif", "correct10.gif", "correct11.gif", "correct12.gif", "correct13.gif", "correct14.gif", "correct15.gif"];
     var incorrectGif = ["incorrect1.gif", "incorrect2.gif", "incorrect3.gif", "incorrect4.gif", "incorrect5.gif", "incorrect6.gif", "incorrect7.gif", "incorrect8.gif", "incorrect9.gif", "incorrect10.gif", "incorrect11.gif", "incorrect12.gif", "incorrect13.gif", "incorrect15.gif", "incorrect15.gif"];
     var unansweredGif = ["unanswered1.gif", "unanswered2.gif", "unanswered3.gif", "unanswered4.gif", "unanswered5.gif"]
+
     var questionsAsked = 0;
     var correctAnswers = 0;
     var incorrectAnswers = 0;
     var unanswered = 0;
+
     var timer = 30;
     var intervalID;
 
@@ -47,36 +28,14 @@ $(document).ready(function () {
         setTimeout(nextQuestion, 5000);
         stopInterval();
         questionsAsked++;
-        console.log(questionsAsked);
     });
 
     $(".restart").on("click", function () {
-        questionArray = [{
-            question: "What is the name of the coffee shop the friends hang out at?",
-            1: ["Central Perk", true],
-            2: ["Starbucks", false],
-            3: ["Central Joe's", false],
-            4: ["Coffee Corner", false]
-        },
-        {
-            question: "Who was Ross' first wife?",
-            1: ["Emily", false],
-            2: ["Rachel", false],
-            3: ["Susan", false],
-            4: ["Carol", true],
-        },
-        {
-            question: "What was the name of Pheobe's hit single?",
-            1: ["Pervert Parade", false],
-            2: ["Smelly Cat", true],
-            3: ["Sticky Shoes", false],
-            4: ["Lather, Rinse, Repeat", false]
-        }
-    ];
         questionsAsked = 0;
         correctAnswers = 0;
         incorrectAnswers = 0;
         unanswered = 0;
+        loadQuestions();
         showQuestion();
         stopMusic();
         bamboozled();
@@ -102,9 +61,7 @@ $(document).ready(function () {
     // Displays text from the question object pulled and sets the true/false data value to each HTML "#answer" element.
     function randomQuestion() {
         var randomQuestionIndex = Math.floor(Math.random() * questionArray.length); // 1
-        // var nextIndex = randomQuestionIndex + 1;
         var randomQuestion = questionArray.splice(randomQuestionIndex, 1);
-        // intervalID = setInterval(countDown, 1000, 31);
         $("#question").text(randomQuestion[0].question);
         $("#answer1").text(randomQuestion[0][1][0]);
         $("#answer1").attr("data-value", randomQuestion[0][1][1]);
@@ -147,7 +104,6 @@ $(document).ready(function () {
             $("#gif").attr("src", gifUrl);
         } else {
             questionsAsked++;
-            console.log(questionsAsked);
             unanswered++
             var randomGif = Math.floor(Math.random() * unansweredGif.length);
             var gifUrl = "assets/images/" + unansweredGif[randomGif];
@@ -173,6 +129,7 @@ $(document).ready(function () {
         if (questionsAsked === 2) {
             endGame();
             clearInterval(intervalID);
+            resetResult();
         } else {
             clearInterval(intervalID);
             startInterval();
