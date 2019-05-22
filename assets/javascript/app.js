@@ -95,8 +95,7 @@ $(document).ready(function () {
             $(".result-text").text("Correct!");
             $(".result-text").attr("id", "correct");
             $("#gif").attr("src", gifUrl);
-        } else if (!boolean) {
-            console.log("showResult false");
+        } else if (boolean === false) {
             incorrectAnswers++
             var randomGif = Math.floor(Math.random() * incorrectGif.length);
             var gifUrl = "assets/images/" + incorrectGif[randomGif];
