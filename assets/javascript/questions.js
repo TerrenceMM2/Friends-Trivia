@@ -46,7 +46,7 @@ function loadQuestions() {
             answer: "Joey's Stalker"
         },
         {
-            question: "Which actress did Rachel kiss?",
+            question: "Rachel kissed a character played by which actress?",
             answerArray: ["Reece Witherspoon", "Alicia Silverstone", "Christina Applegate", "Winona Ryder"],
             answer: "Winona Ryder"
         },
@@ -59,6 +59,46 @@ function loadQuestions() {
             question: "Where does Phoebe's Scientist boyfriend, David, relocate to for work?",
             answerArray: ["Minsk", "Olso", "Stockholm", "Moscow"],
             answer: "Minsk"
-        }
+        },
+        {
+            question: "What does Rachel's sister Amy decide to do as a career?",
+            answerArray: ["Model", "Personal Shopper", "Baby Stylist", "Designer"],
+            answer: "Baby Stylist"
+        },
+        {
+            question: "What is Ross' son's name?",
+            answerArray: ["Tyler", "Cole", "Dylan", "Ben"],
+            answer: "Ben"
+        },
+        {
+            question: "Joey buys one book from an encyclopedia set. Which letter does he buy?",
+            answerArray: ["V", "Z", "K", "J"],
+            answer: "V"
+        },
+        {
+            question: "What card did Joey think was stolen by the guy who robbed the apartment?",
+            answerArray: ["Queen of Hearts", "Ace of Spades", "Five of Spades", "Two of Clubs"],
+            answer: "Five of Spades"
+        },
+        {
+            question: "Finish the lyric: 'Home is never far away...'",
+            answerArray: ["'...Home is Home Star stew'", "'...Home is in clear view'", "'...Home is Home Star brew'", "'...Home is Home Star chew'"],
+            answer: "'...Home is Home Star stew'"
+        },
+        {
+            question: "Which pairing never kissed on the show?",
+            answerArray: ["Ross and Joey", "Monica and Joey", "Rachel and Chandler", "Monica and Phoebe"],
+            answer: "Monica and Phoebe"
+        },
+        {
+            question: "What did Joey name his barcalounger?",
+            answerArray: ["Rosa", "Rosita", "Rosanna", "Roxanne"],
+            answer: "Rosita"
+        },
+        {
+            question: "What is Chandler's middle name?",
+            answerArray: ["Marcel", "Michael", "Muriel", "Maury"],
+            answer: "Muriel"
+        },
     ];
 };

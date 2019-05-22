@@ -68,6 +68,10 @@ span {
     border-color: #7262A1
 }
 
+.btn:focus{
+    outline: none;
+}
+
 .my-auto {
     margin-top: auto;
     margin-bottom: auto;
@@ -135,6 +139,7 @@ h2 {
 
     h1 {
         font-size: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     h2 {
@@ -187,10 +192,103 @@ h2 {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    .main-container {
+        height: 90vh;
+        width: 90vw;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+        margin-top: 1rem;
+    }
+
+    span {
+        font-size: 4rem;
+    }
+
+    p {
+        font-size: 2rem;
+        margin: 2rem auto;
+        width: 100%;
+    }
+
+    .answer {
+        font-size: 1.5rem;
+        padding: 0;
+        margin-top: .5rem;
+    }
+
+    #timer {
+        font-size: 2rem;
+    }
+
+    .row {
+        margin-bottom: 1rem;
+    }
+
+    #gif {
+        overflow: auto;
+        min-height: initial;
+        max-height: initial;
+    }
+
+    .totals {
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+
+    .restart {
+        font-size: 2.5rem;
+        margin-top: initial;
+    }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    h2 {
+        font-size: 5rem;
+        margin-top: 1rem;
+    }
+    
+    p {
+        font-size: 3rem;
+        margin: 1rem auto;
+        width: 100%;
+    }
+
+    .answer {
+        font-size: 2rem;
+        padding: .5rem 1rem;
+        margin-top: 1rem;
+    }
+
+    #timer {
+        font-size: 3rem;
+    }
+
+    .row {
+        margin-bottom: 1.5rem;
+    }
+
+    #gif {
+        min-height: 400px;
+        max-height: 500px;
+    }
+
+    .totals {
+        font-size: initial;
+    }
+
+    .restart {
+        font-size: 3.5rem;
+        margin-top: initial;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {}
