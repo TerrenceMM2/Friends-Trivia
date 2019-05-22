@@ -10,7 +10,6 @@ $(document).ready(function () {
     var correctAnswers = 0;
     var incorrectAnswers = 0;
     var unanswered = 0;
-    var answerBoolean = null;
 
     var timer = 30;
     var intervalID;
@@ -23,13 +22,10 @@ $(document).ready(function () {
 
     $(".answer").on("click", function () {
         clearInterval(intervalID);
-        answerBoolean = $(this).data("value");
+        var answerBoolean;
+        var answerBoolean = $(this).data("value");
         showResult(answerBoolean);
-        clearTimeout();
-        setTimeout(nextQuestion, 5000);
-        stopInterval();
         questionsAsked++;
-        console.log(answerBoolean);
     });
 
     $(".restart").on("click", function () {
@@ -44,7 +40,6 @@ $(document).ready(function () {
         bamboozled();
         $("#end-screen").fadeOut().hide();
         $("#question-container").fadeIn().show();
-        console.log(answerBoolean);
     });
 
     // Start Game screen fades out; Questions screen fades in
@@ -91,6 +86,7 @@ $(document).ready(function () {
 
     // Determine if the answer selected was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
     function showResult(boolean) {
+        console.log(boolean);
         if (boolean) {
             correctAnswers++
             var randomGif = Math.floor(Math.random() * correctGif.length);
@@ -98,7 +94,7 @@ $(document).ready(function () {
             $(".result-text").text("Correct!");
             $(".result-text").attr("id", "correct");
             $("#gif").attr("src", gifUrl);
-        } else if (boolean === false) {
+        } else if (!boolean) {
             incorrectAnswers++
             var randomGif = Math.floor(Math.random() * incorrectGif.length);
             var gifUrl = "assets/images/" + incorrectGif[randomGif];
@@ -115,7 +111,8 @@ $(document).ready(function () {
             $("#gif").attr("src", gifUrl);
         };
         resetQuestion();
-        clearInterval(intervalID);
+        stopInterval();
+        clearTimeout();
         setTimeout(nextQuestion, 5000);
         $("#question-container").fadeOut().hide();
         $("#result-container").fadeIn().show();
@@ -125,7 +122,6 @@ $(document).ready(function () {
     function resetResult() {
         $(".result-text").attr("id", "");
         $("#gif").attr("src", "");
-        answerBoolean = null;
     };
 
     // Determines if the max number of questions was asked (10). If not, the next random question is shown.
@@ -151,7 +147,7 @@ $(document).ready(function () {
         clearInterval(intervalID);
     }
 
-    // Decrements timer variable. Adds styling if less than 10 and less than 5 secions.
+    // Decrements timer variable. Adds styling if less than 10 and less than 5 seconds.
     // If the time reaches 0, unanswered value increases by 1.
     function countDown() {
         $("#timer").text(timer);
