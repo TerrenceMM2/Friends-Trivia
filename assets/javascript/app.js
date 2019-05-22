@@ -11,6 +11,9 @@ $(document).ready(function () {
     var incorrectAnswers = 0;
     var unanswered = 0;
 
+    var currentQuestion;
+    var correctAnswer;
+    
     var timer = 30;
     var intervalID;
 
@@ -22,8 +25,8 @@ $(document).ready(function () {
 
     $(".answer").on("click", function () {
         clearInterval(intervalID);
-        var answerBoolean = $(this).data("value");
-        showResult(answerBoolean);
+        var answerString = $(this).text();
+        showResult(answerString);
         questionsAsked++;
     });
 
@@ -58,48 +61,34 @@ $(document).ready(function () {
     // Displays text from the question object pulled and sets the true/false data value to each HTML "#answer" element.
     function randomQuestion() {
         var randomQuestionIndex = Math.floor(Math.random() * questionArray.length); // 1
-        var randomQuestion = questionArray.splice(randomQuestionIndex, 1);
-        $("#question").text(randomQuestion[0].question);
-        $("#answer1").text(randomQuestion[0][1][0]);
-        $("#answer1").attr("data-value", randomQuestion[0][1][1]);
-        $("#answer2").text(randomQuestion[0][2][0]);
-        $("#answer2").attr("data-value", randomQuestion[0][2][1]);
-        $("#answer3").text(randomQuestion[0][3][0]);
-        $("#answer3").attr("data-value", randomQuestion[0][3][1]);
-        $("#answer4").text(randomQuestion[0][4][0]);
-        $("#answer4").attr("data-value", randomQuestion[0][4][1]);
+        currentQuestion = questionArray.splice(randomQuestionIndex, 1);
+        correctAnswer = currentQuestion[0].answer;
+        $("#question").text(currentQuestion[0].question);
+        $("#answer1").text(currentQuestion[0].answerArray[0]);
+        $("#answer2").text(currentQuestion[0].answerArray[1]);
+        $("#answer3").text(currentQuestion[0].answerArray[2]);
+        $("#answer4").text(currentQuestion[0].answerArray[3]);
     };
 
     // Resets the timer's color (if changed) and removes the previous questions data attribute.
     // Resets timer to 30 seconds and stages a new random question.
     function resetQuestion() {
         $("#timer").css("color", "");
-        $("#answer1").removeAttr("data-value");
-        $("#answer2").removeAttr("data-value");
-        $("#answer3").removeAttr("data-value");
-        $("#answer4").removeAttr("data-value");
         timer = 30;
         $("#timer").text(timer);
         randomQuestion();
     };
 
     // Determine if the answer selected was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
-    function showResult(boolean) {
-        if (boolean) {
+    function showResult(answer) {
+        if (answer === correctAnswer) {
             correctAnswers++
             var randomGif = Math.floor(Math.random() * correctGif.length);
             var gifUrl = "assets/images/" + correctGif[randomGif];
             $(".result-text").text("Correct!");
             $(".result-text").attr("id", "correct");
             $("#gif").attr("src", gifUrl);
-        } else if (boolean === false) {
-            incorrectAnswers++
-            var randomGif = Math.floor(Math.random() * incorrectGif.length);
-            var gifUrl = "assets/images/" + incorrectGif[randomGif];
-            $(".result-text").text("Wrong!");
-            $(".result-text").attr("id", "incorrect");
-            $("#gif").attr("src", gifUrl);
-        } else {
+        } else if (answer === undefined) {
             questionsAsked++;
             unanswered++
             var randomGif = Math.floor(Math.random() * unansweredGif.length);
@@ -107,8 +96,14 @@ $(document).ready(function () {
             $(".result-text").text("Out of time!");
             $(".result-text").attr("id", "");
             $("#gif").attr("src", gifUrl);
-        };
-        // resetQuestion();
+        } else {
+            incorrectAnswers++
+            var randomGif = Math.floor(Math.random() * incorrectGif.length);
+            var gifUrl = "assets/images/" + incorrectGif[randomGif];
+            $(".result-text").text("Wrong!");
+            $(".result-text").attr("id", "incorrect");
+            $("#gif").attr("src", gifUrl);
+        }
         stopInterval();
         clearTimeout();
         setTimeout(nextQuestion, 5000);

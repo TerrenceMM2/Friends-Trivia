@@ -1,87 +1,64 @@
 function loadQuestions() {
+
     questionArray = [{
             question: "What is the name of the coffee shop the friends hang out at?",
-            1: ["Central Perk", true],
-            2: ["Starbucks", false],
-            3: ["Central Joe's", false],
-            4: ["Coffee Corner", false]
+            answerArray: ["Central Perk", "Starbucks", "Central Joe's", "Coffee Corner"],
+            answer: "Central Perk"
         },
         {
             question: "What was the name of Pheobe's hit single?",
-            1: ["Pervert Parade", false],
-            2: ["Smelly Cat", true],
-            3: ["Sticky Shoes", false],
-            4: ["Lather, Rinse, Repeat", false]
+            answerArray: ["Pervert Parade", "Smelly Cat", "Sticky Shoes", "Lather, Rinse, Repeat"],
+            answer: "Smelly Cat"
         },
         {
             question: "To get over Richard, what did Monica start making?",
-            1: ["Marmalade", false],
-            2: ["Jam", true],
-            3: ["Candy", false],
-            4: ["Pancakes", false]
+            answerArray: ["Marmalade", "Jam", "Candy","Pancakes"],
+            answer: "Jam"
         },
         {
             question: "What was the name of the self help book that the girls loved?",
-            1: ["Be Your Own Person", false],
-            2: ["Be Your Own Cleansing Pool", false],
-            3: ["Be Your Own Lightning Bearer", false],
-            4: ["Be Your Own Windkeeper", true]
+            answerArray: ["Be Your Own Person", "Be Your Own Cleansing Pool", "Be Your Own Lightning Bearer", "Be Your Own Windkeeper"],
+            answer: "Be Your Own Windkeeper"
         },
         {
             question: "What repossessed item of Joey's did Ross help pay for?",
-            1: ["Dog Statue", true],
-            2: ["Translucent Bird", false],
-            3: ["Jaguar Coffee Table ", false],
-            4: ["Table-top Waterfall", false]
+            answerArray: ["Dog Statue", "Translucent Bird", "Jaguar Coffee Table ", "Table-top Waterfall"],
+            answer: "Dog Statue"
         },
         {
             question: "What was the name of Joey and Chandler's chick?",
-            1: ["Chick", false],
-            2: ["Janice", false],
-            3: ["Yasmin", true],
-            4: ["Pamela", false]
+            answerArray: ["Chick", "Janice", "Yasmin", "Pamela"],
+            answer: "Yasmin"
         },
         {
             question: "What did Ross give Phoebe, because she never had one when she was little?",
-            1: ["A dog", false],
-            2: ["A bike", true],
-            3: ["A dollhouse", false],
-            4: ["A wagon", false]
+            answerArray: ["A dog", "A bike", "A dollhouse","A wagon"],
+            answer: "A bike"
         },
         {
             question: "What was the name of Rachel's ex-fiance?",
-            1: ["Tag", false],
-            2: ["Paolo", false],
-            3: ["Barry", true],
-            4: ["Joshua", false]
+            answerArray: ["Tag", "Paolo", "Barry", "Joshua"],
+            answer: "Barry"
         },
         {
             question: "Who is Erica?",
-            1: ["Joey's Stalker", true],
-            2: ["Chandler and Monica's surrogate mother", false],
-            3: ["Ross and Rachel's daughter", false],
-            4: ["Pheobe's sister", false]
+            answerArray: ["Joey's Stalker", "Chandler and Monica's surrogate mother", "Ross and Rachel's daughter", "Pheobe's sister"],
+            answer: "Joey's Stalker"
         },
         {
             question: "Which actress did Rachel kiss?",
-            1: ["Reece Witherspoon", false],
-            2: ["Alicia Silverstone", false],
-            3: ["Christina Applegate", false],
-            4: ["Winona Ryder", true]
+            answerArray: ["Reece Witherspoon", "Alicia Silverstone", "Christina Applegate", "Winona Ryder"],
+            answer: "Winona Ryder"
         },
         {
             question: "Charlie Sheen appeared as one of Phoebe's boyfriends. What did he do for a living?",
-            1: ["Teacher", false],
-            2: ["Scientist", false],
-            3: ["Naval Officer", true],
-            4: ["Firefighter", false]
+            answerArray: ["Teacher", "Scientist", "Naval Officer", "Firefighter"],
+            answer: "Naval Officer"
         },
         {
             question: "Where does Phoebe's Scientist boyfriend, David, relocate to for work?",
-            1: ["Minsk", true],
-            2: ["Olso", false],
-            3: ["Stockholm", false],
-            4: ["Moscow", false]
+            answerArray: ["Minsk", "Olso", "Stockholm", "Moscow"],
+            answer: "Minsk"
         }
     ];
 };
