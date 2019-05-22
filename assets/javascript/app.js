@@ -22,9 +22,7 @@ $(document).ready(function () {
 
     $(".answer").on("click", function () {
         clearInterval(intervalID);
-        var answerBoolean;
         var answerBoolean = $(this).data("value");
-        console.log("click answer value", answerBoolean, typeof answerBoolean);
         showResult(answerBoolean);
         questionsAsked++;
     });
@@ -88,7 +86,6 @@ $(document).ready(function () {
     // Determine if the answer selected was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
     function showResult(boolean) {
         if (boolean) {
-            console.log("showResult true");
             correctAnswers++
             var randomGif = Math.floor(Math.random() * correctGif.length);
             var gifUrl = "assets/images/" + correctGif[randomGif];
@@ -96,7 +93,6 @@ $(document).ready(function () {
             $(".result-text").attr("id", "correct");
             $("#gif").attr("src", gifUrl);
         } else if (boolean === false) {
-            console.log("showResult false");
             incorrectAnswers++
             var randomGif = Math.floor(Math.random() * incorrectGif.length);
             var gifUrl = "assets/images/" + incorrectGif[randomGif];
@@ -104,7 +100,6 @@ $(document).ready(function () {
             $(".result-text").attr("id", "incorrect");
             $("#gif").attr("src", gifUrl);
         } else {
-            console.log("showResult undefined");
             questionsAsked++;
             unanswered++
             var randomGif = Math.floor(Math.random() * unansweredGif.length);
@@ -113,7 +108,7 @@ $(document).ready(function () {
             $(".result-text").attr("id", "");
             $("#gif").attr("src", gifUrl);
         };
-        resetQuestion();
+        // resetQuestion();
         stopInterval();
         clearTimeout();
         setTimeout(nextQuestion, 5000);
@@ -133,6 +128,7 @@ $(document).ready(function () {
             endGame();
             clearInterval(intervalID);
         } else {
+            resetQuestion();
             clearInterval(intervalID);
             startInterval();
             $("#result-container").fadeOut().hide();
