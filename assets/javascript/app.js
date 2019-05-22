@@ -24,6 +24,7 @@ $(document).ready(function () {
         clearInterval(intervalID);
         var answerBoolean;
         var answerBoolean = $(this).data("value");
+        console.log("click answer value", answerBoolean, typeof answerBoolean);
         showResult(answerBoolean);
         questionsAsked++;
     });
@@ -86,8 +87,8 @@ $(document).ready(function () {
 
     // Determine if the answer selected was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
     function showResult(boolean) {
-        console.log(boolean);
         if (boolean) {
+            console.log("showResult true");
             correctAnswers++
             var randomGif = Math.floor(Math.random() * correctGif.length);
             var gifUrl = "assets/images/" + correctGif[randomGif];
@@ -95,6 +96,7 @@ $(document).ready(function () {
             $(".result-text").attr("id", "correct");
             $("#gif").attr("src", gifUrl);
         } else if (!boolean) {
+            console.log("showResult false");
             incorrectAnswers++
             var randomGif = Math.floor(Math.random() * incorrectGif.length);
             var gifUrl = "assets/images/" + incorrectGif[randomGif];
@@ -102,6 +104,7 @@ $(document).ready(function () {
             $(".result-text").attr("id", "incorrect");
             $("#gif").attr("src", gifUrl);
         } else {
+            console.log("showResult undefined");
             questionsAsked++;
             unanswered++
             var randomGif = Math.floor(Math.random() * unansweredGif.length);
