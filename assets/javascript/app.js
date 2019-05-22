@@ -10,6 +10,7 @@ $(document).ready(function () {
     var correctAnswers = 0;
     var incorrectAnswers = 0;
     var unanswered = 0;
+    var answerBoolean = null;
 
     var timer = 30;
     var intervalID;
@@ -28,6 +29,7 @@ $(document).ready(function () {
         setTimeout(nextQuestion, 5000);
         stopInterval();
         questionsAsked++;
+        console.log(answerBoolean);
     });
 
     $(".restart").on("click", function () {
@@ -37,10 +39,12 @@ $(document).ready(function () {
         unanswered = 0;
         loadQuestions();
         showQuestion();
+        resetResult();
         stopMusic();
         bamboozled();
         $("#end-screen").fadeOut().hide();
         $("#question-container").fadeIn().show();
+        console.log(answerBoolean);
     });
 
     // Start Game screen fades out; Questions screen fades in
@@ -52,7 +56,6 @@ $(document).ready(function () {
     // Initial function for the "Start Game" button
     function showQuestion() {
         startInterval();
-        resetResult();
         resetQuestion();
         $("#timer").text(timer);
     };
@@ -86,7 +89,7 @@ $(document).ready(function () {
         randomQuestion();
     };
 
-    // Determine if the answer sectied was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
+    // Determine if the answer selected was correct, incorrect (based on data values), or answered (if no answer was selected before time ran out) and sets Result screen text and random Gif.
     function showResult(boolean) {
         if (boolean) {
             correctAnswers++
@@ -122,14 +125,14 @@ $(document).ready(function () {
     function resetResult() {
         $(".result-text").attr("id", "");
         $("#gif").attr("src", "");
+        answerBoolean = null;
     };
 
     // Determines if the max number of questions was asked (10). If not, the next random question is shown.
     function nextQuestion() {
-        if (questionsAsked === 2) {
+        if (questionsAsked === 10) {
             endGame();
             clearInterval(intervalID);
-            resetResult();
         } else {
             clearInterval(intervalID);
             startInterval();

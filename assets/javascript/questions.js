@@ -28,10 +28,10 @@ function loadQuestions() {
             4: ["Be Your Own Windkeeper", true]
         },
         {
-            question: "What repossed item of Joey's did Ross help pay for?",
+            question: "What repossessed item of Joey's did Ross help pay for?",
             1: ["Dog Statue", true],
             2: ["Translucent Bird", false],
-            3: ["Jaguar Coffeetable ", false],
+            3: ["Jaguar Coffee Table ", false],
             4: ["Table-top Waterfall", false]
         },
         {
@@ -50,10 +50,10 @@ function loadQuestions() {
         },
         {
             question: "What was the name of Rachel's ex-fiance?",
-            1: ["A dog", false],
-            2: ["A bike", true],
-            3: ["A dollhouse", false],
-            4: ["A wagon", false]
+            1: ["Tag", false],
+            2: ["Paolo", false],
+            3: ["Barry", true],
+            4: ["Joshua", false]
         },
         {
             question: "Who is Erica?",
@@ -63,7 +63,7 @@ function loadQuestions() {
             4: ["Pheobe's sister", false]
         },
         {
-            question: "What was the name of the soap opera Joey acted on?",
+            question: "Which actress did Rachel kiss?",
             1: ["Reece Witherspoon", false],
             2: ["Alicia Silverstone", false],
             3: ["Christina Applegate", false],
