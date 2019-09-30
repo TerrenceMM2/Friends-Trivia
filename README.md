@@ -14,11 +14,6 @@ This Friends trivia game tests your Friend knowledge and demostrates JavaScript 
 
 ## Screenshot
 ![Friends Trviai Game Screenshot](../media/friends-trivia-screenshot.png?raw=true)
-  
-### Glossary  
-* HP = Health Points  
-* AP = Attack Points  
-* CAP = Counter Attack Points
 
 ### Built With
 1. HTML/CSS
