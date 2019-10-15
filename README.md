@@ -1,6 +1,6 @@
-# coursework5-trivia-game  
+# Friends Trivia  
 Vanderbilt Coding Boot Camp - Coursework 5 - Trivia Game  
-Live Link: https://terrencemm2.github.io/coursework5-trivia-game/  
+Live Link: https://terrencemm2.github.io/Friends-Trivia/  
   
 ## Purpose
 This Friends trivia game tests your Friend knowledge and demostrates JavaScript intervals and timeout functionality.
