@@ -1,5 +1,4 @@
-# Friends Trivia  
-Vanderbilt Coding Boot Camp - Coursework 5 - Trivia Game  
+# Friends Trivia   
 Live Link: https://terrencemm2.github.io/Friends-Trivia/  
   
 ## Purpose
@@ -13,7 +12,7 @@ This Friends trivia game tests your Friend knowledge and demostrates JavaScript 
 4. Click "Play Again?" to being a new game.  
 
 ## Screenshot
-![Friends Trviai Game Screenshot](../media/friends-trivia-screenshot.png?raw=true)
+![Friends Trivia Game Screenshot](../media/friends-trivia-screenshot.png?raw=true)
 
 ### Built With
 1. HTML/CSS
